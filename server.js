@@ -32,6 +32,8 @@ const api = openApi.initialize({
 })
 
 // init swagger-ui docs with the openapi dynamically generated doc
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(api.apiDoc))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(null, {
+  swaggerUrl: 'http://localhost:3000/api/api-docs'
+}))
 
 app.listen(port)
