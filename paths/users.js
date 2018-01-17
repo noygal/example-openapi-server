@@ -1,6 +1,6 @@
 module.exports = (logger, usersCollection) => {
   const path = {
-    get: (req, res, next) => res.send(usersCollection.slice(0, parseInt(req.query.limit || '20'))),
+    get: (req, res, next) => res.send(usersCollection.slice(0, parseInt(req.query.limit) || 20)),
     post: (req, res, next) => {
       usersCollection.push(Object.assign(req.body, {id: `${Date.now()}`}))
       res.sendStatus(200)
@@ -18,6 +18,7 @@ const getApiDoc = {
     in: 'query',
     name: 'limit',
     default: 20,
+    required: true,
     type: 'number',
     description: 'List length limit'
   }],
